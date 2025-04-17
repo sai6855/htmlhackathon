@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        :root {
+            --background-base: #121212;
+            --background-highlight: #1a1a1a;
+            --background-press: #000;
+            --background-elevated-base: #242424;
+            --background-elevated-highlight: #2a2a2a;
+            --text-base: #fff;
+            --text-subdued: #a7a7a7;
+            --text-bright-accent: #1ed760;
+        }
+
+        body {
+            background-color: var(--background-base);
+            color: var(--text-base);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background-color: #000;
+            padding: 24px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            height: 100%;
+        }
+
+        .logo {
+            padding: 0 12px;
+            margin-bottom: 18px;
+        }
+
+        .logo img {
+            width: 131px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 12px;
+            color: var(--text-subdued);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+
+        .nav-item:hover {
+            color: var(--text-base);
+        }
+
+        .nav-item.active {
+            color: var(--text-base);
+            background-color: var(--background-elevated-highlight);
+        }
+
+        .nav-item i {
+            font-size: 24px;
+        }
+
+        .create-playlist {
+            margin-top: 24px;
+            padding: 0 12px;
+        }
+
+        .create-playlist-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-subdued);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            padding: 8px 0;
+        }
+
+        .create-playlist-btn:hover {
+            color: var(--text-base);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to bottom, rgba(80,56,160,1) 0%, var(--background-base) 40%);
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(20px);
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: #242424;
+            padding: 6px 32px 6px 12px;
+            border-radius: 23px;
+            flex: 0 1 364px;
+        }
+
+        .search-container i {
+            color: var(--text-subdued);
+            margin-right: 8px;
+        }
+
+        .search-input {
+            background: none;
+            border: none;
+            color: var(--text-base);
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .top-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .top-link {
+            color: var(--text-subdued);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .top-link:hover {
+            color: var(--text-base);
+            scale: 1.04;
+        }
+
+        .user-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .install-app {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-subdued);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .install-app:hover {
+            color: var(--text-base);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 24px 32px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .show-all {
+            color: var(--text-subdued);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .show-all:hover {
+            text-decoration: underline;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--background-elevated-base);
+            padding: 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            background: var(--background-elevated-highlight);
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: var(--text-subdued);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(transparent 0, rgba(0,0,0,.5) 100%);
+            padding: 80px 24px 30px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1170px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .footer-section h3 {
+            color: var(--text-subdued);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .footer-section a {
+            color: var(--text-base);
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: #292929;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-base);
+            font-size: 18px;
+        }
+
+        .social-link:hover {
+            background: #727272;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid #292929;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-link {
+            color: var(--text-subdued);
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .footer-bottom-link:hover {
+            color: var(--text-base);
+        }
+
+        .copyright {
+            color: var(--text-subdued);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png" alt="Spotify">
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-book"></i>
+                <span>Your Library</span>
+            </a>
+        </div>
+        <div class="create-playlist">
+            <button class="create-playlist-btn">
+                <i class="fas fa-plus-square"></i>
+                Create Playlist
+            </button>
+            <p class="create-playlist-text">It's easy, we'll help you</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search-input" placeholder="What do you want to play?">
+            </div>
+            <div class="top-bar-right">
+                <div class="top-links">
+                    <a href="#" class="top-link">Premium</a>
+                    <a href="#" class="top-link">Support</a>
+                    <a href="#" class="top-link">Download</a>
+                </div>
+                <div class="user-controls">
+                    <a href="#" class="install-app">
+                        <i class="far fa-clock"></i>
+                        Install App
+                    </a>
+                    <button class="top-link">Sign up</button>
+                    <button class="top-link">Log in</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Trending songs</h2>
+                <a href="#" class="show-all">Show all</a>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <img src="https://i.scdn.co/image/ab67616d0000b273f907de96b90a472c04b5b2d2" alt="Pal Pal" class="card-image">
+                    <h3 class="card-title">Pal Pal</h3>
+                    <p class="card-subtitle">Afusic, AliSoomroMusic</p>
+                </div>
+                <!-- More cards... -->
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Popular artists</h2>
+                <a href="#" class="show-all">Show all</a>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <img src="https://i.scdn.co/image/ab6761610000e5eba8223997e8d70e171a6ddf39" alt="Pritam" class="card-image" style="border-radius: 50%;">
+                    <h3 class="card-title">Pritam</h3>
+                    <p class="card-subtitle">Artist</p>
+                </div>
+                <!-- More artists... -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <a href="#">About</a>
+                        <a href="#">Jobs</a>
+                        <a href="#">For the Record</a>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Communities</h3>
+                        <a href="#">For Artists</a>
+                        <a href="#">Developers</a>
+                        <a href="#">Advertising</a>
+                        <a href="#">Investors</a>
+                        <a href="#">Vendors</a>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Useful links</h3>
+                        <a href="#">Support</a>
+                        <a href="#">Free Mobile App</a>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Spotify Plans</h3>
+                        <a href="#">Premium Individual</a>
+                        <a href="#">Premium Duo</a>
+                        <a href="#">Premium Family</a>
+                        <a href="#">Premium Student</a>
+                        <a href="#">Spotify Free</a>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-bottom-links">
+                        <a href="#" class="footer-bottom-link">Legal</a>
+                        <a href="#" class="footer-bottom-link">Safety & Privacy Center</a>
+                        <a href="#" class="footer-bottom-link">Privacy Policy</a>
+                        <a href="#" class="footer-bottom-link">Cookies</a>
+                        <a href="#" class="footer-bottom-link">About Ads</a>
+                        <a href="#" class="footer-bottom-link">Accessibility</a>
+                    </div>
+                    <div class="copyright">© 2025 Spotify AB</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 
