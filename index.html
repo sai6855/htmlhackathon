@@ -84,30 +84,23 @@
             display: flex;
             align-items: center;
             background-color: #242424;
-            padding: 6px 12px;
+            padding: 6px 8px;
             border-radius: 500px;
             width: 364px;
             height: 48px;
             position: relative;
+            gap: 8px;
         }
 
         .search-container::after {
-            content: "Ctrl K";
-            position: absolute;
-            right: 12px;
-            color: #ffffff80;
-            font-size: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 4px 8px;
-            border-radius: 4px;
+            display: none;
         }
 
         .search-icon {
             width: 24px;
             height: 24px;
             min-width: 24px;
-            color: #ffffff80;
-            margin-right: 8px;
+            color: #7f7f7f;
         }
 
         .search-input {
@@ -118,13 +111,31 @@
             width: 100%;
             outline: none;
             height: 100%;
-            font-weight: 400;
-            padding-right: 64px;
+            font-weight: 500;
+            caret-color: #fff;
         }
 
         .search-input::placeholder {
-            color: #a7a7a7;
-            font-weight: 400;
+            color: #e7dede;
+            font-weight: 500;
+        }
+
+        .search-end {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-separator {
+            width: 1px;
+            height: 24px;
+            background-color: #4d4d4d;
+        }
+
+        .collection-icon {
+            width: 24px;
+            height: 24px;
+            color: #fff;
         }
 
         .top-bar-right {
@@ -652,6 +663,16 @@
                         <path d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 101.414-1.414l-4.344-4.344a9.157 9.157 0 002.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.279c0-4.006 3.302-7.279 7.407-7.279s7.407 3.273 7.407 7.279-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.279z" fill="currentColor"></path>
                     </svg>
                     <input type="text" class="search-input" placeholder="What do you want to play?">
+                    <div class="search-end">
+                        <div class="search-separator"></div>
+<svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="white">
+  <path d="M20 10h24a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H20a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/>
+  <path d="M16 22h32l-4 28a2 2 0 0 1-2 2H22a2 2 0 0 1-2-2l-4-28z"/>
+  <ellipse cx="32" cy="38" rx="6" ry="4" fill="black"/>
+</svg>
+
+
+                    </div>
                 </div>
             </div>
             <div class="top-bar-right">
