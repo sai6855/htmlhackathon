@@ -34,12 +34,12 @@
 
         .app-container {
             display: grid;
-            height: 100vh;
             grid-template-areas:
-                "topbar topbar"
                 "sidebar main";
             grid-template-columns: 420px 1fr;
-            grid-template-rows: auto 1fr;
+            grid-template-rows: 1fr;
+            height: 100vh;
+            padding-top: 64px;
         }
 
         /* Top Bar */
@@ -234,7 +234,6 @@
             flex-direction: column;
             gap: 24px;
             height: calc(100vh - 64px);
-            margin-top: 64px;
             overflow-y: auto;
         }
 
@@ -388,6 +387,7 @@
             background: linear-gradient(to bottom, rgba(80,56,160,1) 0%, var(--background-base) 40%);
             overflow-y: auto;
             position: relative;
+            height: calc(100vh - 64px);
         }
 
         .logo {
