@@ -85,34 +85,74 @@
             font-size: 24px;
         }
 
-        .create-playlist {
+        .library-section {
             margin-top: 24px;
-            padding: 0 12px;
         }
 
-        .create-playlist-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-subdued);
+        .library-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .library-title {
             display: flex;
             align-items: center;
-            gap: 16px;
-            font-size: 14px;
+            gap: 8px;
+        }
+
+        .library-title i {
+            font-size: 20px;
+        }
+
+        .library-title span {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .add-button {
+            background: transparent;
+            border: none;
+            color: var(--text-base);
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            width: 100%;
-            text-align: left;
-            padding: 8px 0;
         }
 
-        .create-playlist-btn:hover {
-            color: var(--text-base);
+        .create-playlist-card {
+            background: var(--background-elevated-base);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
         }
 
-        .create-playlist-text {
-            color: var(--text-subdued);
+        .create-playlist-card h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .create-playlist-card p {
             font-size: 14px;
-            margin-top: 8px;
+            color: var(--text-subdued);
+            margin-bottom: 20px;
+        }
+
+        .create-playlist-card button {
+            background: var(--text-base);
+            color: #000;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 500px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .create-playlist-card button:hover {
+            transform: scale(1.04);
+            background: #f6f6f6;
         }
 
         /* Main Content */
@@ -424,7 +464,7 @@
             </svg>
         </div>
         <div class="nav-links">
-            <a href="#" class="nav-item active">
+            <a href="#" class="nav-item">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
@@ -432,17 +472,22 @@
                 <i class="fas fa-search"></i>
                 <span>Search</span>
             </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-book"></i>
-                <span>Your Library</span>
-            </a>
         </div>
-        <div class="create-playlist">
-            <button class="create-playlist-btn">
-                <i class="fas fa-plus-square"></i>
-                Create Playlist
-            </button>
-            <p class="create-playlist-text">It's easy, we'll help you</p>
+        <div class="library-section">
+            <div class="library-header">
+                <div class="library-title">
+                    <i class="fas fa-book"></i>
+                    <span>Your Library</span>
+                </div>
+                <button class="add-button">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="create-playlist-card">
+                <h2>Create your first playlist</h2>
+                <p>It's easy, we'll help you</p>
+                <button class="create-playlist">Create playlist</button>
+            </div>
         </div>
     </div>
 
