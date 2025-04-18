@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spotify - Web Player</title>
-    <link rel="icon" sizes="32x32" type="image/png" href="https://open.spotifycdn.com/cdn/images/favicon32.b64ecc03.png">
+    <link
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+      href="https://open.spotifycdn.com/cdn/images/favicon32.b64ecc03.png"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -351,7 +356,6 @@
         margin-bottom: 16px;
       }
 
-
       .language-selector {
         padding: 0 16px;
       }
@@ -558,7 +562,7 @@
 
       .footer-links {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 24px;
         margin-bottom: 64px;
       }
@@ -585,7 +589,6 @@
       .social-links {
         display: flex;
         gap: 16px;
-        margin-top: 20px;
       }
 
       .social-link {
@@ -630,7 +633,9 @@
 
       .copyright {
         color: var(--text-subdued);
-        font-size: 12px;
+        font-size: 14px;
+        margin-top: 20px;
+        margin-bottom: 32px;
       }
 
       .legal-links {
@@ -678,6 +683,33 @@
 
       .language-button i {
         font-size: 16px;
+      }
+
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        transition: background-color 0.3s;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .scrollable:hover::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
       }
     </style>
   </head>
@@ -791,17 +823,17 @@
               <span>Your Library</span>
             </div>
             <button class="add-button">
-              <i class="fas fa-plus" style="color: white;"></i>
+              <i class="fas fa-plus" style="color: white"></i>
             </button>
           </div>
           <div class="create-playlist-card">
             <h2>Create your first playlist</h2>
-            <p style="color: white;">It's easy, we'll help you</p>
+            <p style="color: white">It's easy, we'll help you</p>
             <button class="create-playlist">Create playlist</button>
           </div>
           <div class="create-playlist-card">
-            <h2>Let's find some podcasts to follow            </h2>
-            <p style="color: white;">We will keep you updated on new episodes</p>
+            <h2>Let's find some podcasts to follow</h2>
+            <p style="color: white">We will keep you updated on new episodes</p>
             <button class="create-playlist">Browse podcasts</button>
           </div>
           <div class="legal-links">
@@ -815,7 +847,7 @@
             <a href="#">Accessibility</a>
           </div>
           <div class="legal-links">
-            <a href="#" style="color: white;">Cookies</a>
+            <a href="#" style="color: white">Cookies</a>
           </div>
           <div class="language-selector">
             <button class="language-button">
@@ -1075,7 +1107,7 @@
                 />
                 <div class="play-button">▶</div>
               </div>
-              
+
               <p class="card-subtitle">With Arman malik, Mustafa zahid</p>
             </div>
             <div class="card">
@@ -1098,7 +1130,7 @@
                 />
                 <div class="play-button">▶</div>
               </div>
-              <p class="card-subtitle">With Mahammod Rafi, Kishore kumar </p>
+              <p class="card-subtitle">With Mahammod Rafi, Kishore kumar</p>
             </div>
           </div>
         </div>
@@ -1117,7 +1149,9 @@
                 />
                 <div class="play-button">▶</div>
               </div>
-              <p class="card-subtitle">Your weekly update of the most played...</p>
+              <p class="card-subtitle">
+                Your weekly update of the most played...
+              </p>
             </div>
             <div class="card">
               <div class="image-container">
@@ -1128,7 +1162,9 @@
                 />
                 <div class="play-button">▶</div>
               </div>
-              <p class="card-subtitle">Your weekly update of the most played...</p>
+              <p class="card-subtitle">
+                Your weekly update of the most played...
+              </p>
             </div>
             <div class="card">
               <div class="image-container">
@@ -1139,7 +1175,9 @@
                 />
                 <div class="play-button">▶</div>
               </div>
-              <p class="card-subtitle">Your daily update of the most played...</p>
+              <p class="card-subtitle">
+                Your daily update of the most played...
+              </p>
             </div>
             <div class="card">
               <div class="image-container">
@@ -1161,7 +1199,9 @@
                 />
                 <div class="play-button">▶</div>
               </div>
-              <p class="card-subtitle">Your daily update of the most viral trac...</p>
+              <p class="card-subtitle">
+                Your daily update of the most viral trac...
+              </p>
             </div>
           </div>
         </div>
@@ -1224,7 +1264,7 @@
                 />
                 <div class="play-button">▶</div>
               </div>
-              
+
               <p class="card-subtitle">India's Rap Scene</p>
             </div>
           </div>
@@ -1261,27 +1301,20 @@
                 <a href="#">Premium Student</a>
                 <a href="#">Spotify Free</a>
               </div>
-            </div>
-            <div class="social-links">
-              <a href="#" class="social-link"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="social-link"
-                ><i class="fab fa-facebook"></i
-              ></a>
-            </div>
-            <div class="footer-bottom">
-              <div class="footer-bottom-links">
-                <a href="#" class="footer-bottom-link">Legal</a>
-                <a href="#" class="footer-bottom-link"
-                  >Safety & Privacy Center</a
-                >
-                <a href="#" class="footer-bottom-link">Privacy Policy</a>
-                <a href="#" class="footer-bottom-link">Cookies</a>
-                <a href="#" class="footer-bottom-link">About Ads</a>
-                <a href="#" class="footer-bottom-link">Accessibility</a>
+              <div class="social-links">
+                <a href="#" class="social-link"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-facebook"></i
+                ></a>
               </div>
+            </div>
+
+            <div class="footer-bottom">
               <div class="copyright">© 2025 Spotify AB</div>
             </div>
           </div>
