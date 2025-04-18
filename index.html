@@ -251,7 +251,7 @@
       .sidebar {
         grid-area: sidebar;
         background-color: #000;
-        padding: 24px 12px;
+        padding: 0 12px;
         display: flex;
         flex-direction: column;
         gap: 24px;
@@ -261,7 +261,6 @@
       .library-section {
         background-color: #121212;
         border-radius: 8px;
-        padding: 16px 0;
         display: flex;
         flex-direction: column;
         gap: 24px;
@@ -271,14 +270,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 16px;
+        padding: 16px 16px;
       }
 
       .library-title {
         display: flex;
         align-items: center;
         gap: 12px;
-        color: #b3b3b3;
+        color: #fff;
       }
 
       .library-title i {
@@ -808,11 +807,10 @@
         <div class="library-section">
           <div class="library-header">
             <div class="library-title">
-              <i class="fas fa-book"></i>
               <span>Your Library</span>
             </div>
             <button class="add-button">
-              <i class="fas fa-plus"></i>
+              <i class="fas fa-plus" style="color: white;"></i>
             </button>
           </div>
           <div class="create-playlist-card">
