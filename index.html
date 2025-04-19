@@ -1855,5 +1855,11 @@
     function closeModal() {
       document.getElementById("aiModal").style.display = "none";
     }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        document.getElementById("aiModal").style.display = "none";
+      }
+    });
   </script>
 </html>
