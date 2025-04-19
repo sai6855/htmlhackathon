@@ -256,7 +256,7 @@
       .sidebar {
         grid-area: sidebar;
         background-color: #000;
-        padding: 0  12px;
+        padding: 0 12px;
         display: flex;
         flex-direction: column;
         gap: 24px;
@@ -284,7 +284,6 @@
         gap: 12px;
         color: #fff;
       }
-
 
       .library-title span {
         font-size: 16px;
@@ -525,7 +524,6 @@
         position: relative;
         overflow: hidden;
       }
-
 
       .image-container:hover .play-button {
         opacity: 1;
@@ -824,87 +822,86 @@
         line-height: 1.6;
       }
       .timeline-awards {
-            color: #ffeb3b;
-            font-style: italic;
-            margin-top: 10px;
-            font-weight: bold;
-        }
+        color: #ffeb3b;
+        font-style: italic;
+        margin-top: 10px;
+        font-weight: bold;
+      }
 
-        .timeline-details {
-            color: var(--text-subdued);
-        }
+      .timeline-details {
+        color: var(--text-subdued);
+      }
 
-        .ai-button {
-      background-color: #1DB954;
-      color: white;
-      padding: 14px 14px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 20px;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
+      .ai-button {
+        background-color: #1db954;
+        color: white;
+        padding: 14px 14px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
 
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.7);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
 
-    .modal {
-      background-color: #121212;
-      border-radius: 1rem;
-      padding: 2rem;
-      width: 90%;
-      max-width: 400px;
-    }
+      .modal {
+        background-color: #121212;
+        border-radius: 1rem;
+        padding: 2rem;
+        width: 90%;
+        max-width: 400px;
+      }
 
-    .modal h2 {
-      margin-top: 0;
-    }
+      .modal h2 {
+        margin-top: 0;
+      }
 
-    .song {
-      background-color: rgba(30, 215, 96, 0.1);
-      padding: 10px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
+      .song {
+        background-color: rgba(30, 215, 96, 0.1);
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
 
-    .modal-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1.5rem;
-    }
+      .modal-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+      }
 
-    .modal-buttons button {
-      background-color: #1DB954;
-      border: none;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 9999px;
-      cursor: pointer;
-    }
+      .modal-buttons button {
+        background-color: #1db954;
+        border: none;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 9999px;
+        cursor: pointer;
+      }
 
-    .close-btn {
-      background: transparent;
-      color: #aaa;
-      padding: 0;
-    }
+      .close-btn {
+        background: transparent;
+        color: #aaa;
+        padding: 0;
+      }
 
-    .info-text {
-      font-size: 12px;
-      color: #888;
-      margin-top: 1rem;
-      text-align: center;
-    }
-
+      .info-text {
+        font-size: 12px;
+        color: #888;
+        margin-top: 1rem;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -1031,7 +1028,7 @@
               <span>Your Library</span>
             </div>
             <button class="add-button">
-              <i class="fas fa-plus" style="color: white; font-weight: 400;"></i>
+              <i class="fas fa-plus" style="color: white; font-weight: 400"></i>
             </button>
           </div>
           <div class="create-playlist-card">
@@ -1548,23 +1545,27 @@
     <button class="ai-button" onclick="openModal()">✨</button>
 
     <div id="aiModal" class="modal-backdrop">
-        <div class="modal">
-          <h2>AI-Powered Music Discovery</h2>
-          <p id="context-text" style="color: #ccc; font-size: 14px; margin-bottom: 1rem;"></p>
-    
-          <div id="suggestions">
-            <!-- Songs will be inserted here -->
-          </div>
-    
-          <div class="modal-buttons">
-            <button>Play All</button>
-            <button class="close-btn" onclick="closeModal()">Close</button>
-          </div>
-          <p class="info-text">
-            In actual implementation, we would fetch your real-time location and temperature.
-          </p>
+      <div class="modal">
+        <h2>AI-Powered Music Discovery</h2>
+        <p
+          id="context-text"
+          style="color: #ccc; font-size: 14px; margin-bottom: 1rem"
+        ></p>
+
+        <div id="suggestions">
+          <!-- Songs will be inserted here -->
         </div>
+
+        <div class="modal-buttons">
+          <button>Play All</button>
+          <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+        <p class="info-text">
+          In actual implementation, we would fetch your real-time location and
+          temperature.
+        </p>
       </div>
+    </div>
   </body>
 
   <script>
@@ -1805,7 +1806,10 @@
     const suggestions = [
       { title: "Tum Mile", artist: "Pritam, Neeraj Shridhar" },
       { title: "Kesariya", artist: "Arijit Singh" },
-      { title: "Vaathi Coming", artist: "Anirudh Ravichander, Gana Balachandar" }
+      {
+        title: "Vaathi Coming",
+        artist: "Anirudh Ravichander, Gana Balachandar",
+      },
     ];
 
     function openModal() {
@@ -1814,18 +1818,25 @@
       const suggestionsDiv = document.getElementById("suggestions");
 
       const now = new Date();
-      const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+      const time = now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
       const temperature = "26°C";
       const location = "Chennai, Home";
 
       contextText.innerHTML = `Based on your <strong>${time}</strong>, weather (<strong>${temperature}</strong>), and location (<strong>${location}</strong>), here are your personalized picks:`;
 
-      suggestionsDiv.innerHTML = suggestions.map(song => `
+      suggestionsDiv.innerHTML = suggestions
+        .map(
+          (song) => `
         <div class="song">
           <div><strong>${song.title}</strong></div>
           <div style="font-size: 13px; color: #aaa;">${song.artist}</div>
         </div>
-      `).join("");
+      `
+        )
+        .join("");
 
       modal.style.display = "flex";
     }
@@ -1833,7 +1844,5 @@
     function closeModal() {
       document.getElementById("aiModal").style.display = "none";
     }
-
-
   </script>
 </html>
